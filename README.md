@@ -152,5 +152,6 @@ Criação Manual da tabela :
 ## Modelagem de Dados
 Abordagem clássica de tabelas DIMENSÃO e FATO.
 Os identificadores únicos de cada registro (chave primária) foram criados no Redshift com SQL.
+[Query da Modelagem](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/codigos/redshift-queries/DDL-modelagem-dados-redshift.sql)
 
 ![Diagrama de Modelagem](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/diagrama-relacional-de-entidades-.png)
