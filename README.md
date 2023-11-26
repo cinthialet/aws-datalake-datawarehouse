@@ -65,12 +65,14 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
    - 4.2. Conectar com o Redshift via conexão JDBC.
    - 4.3. Inserir os dados na tabela previamente criada manualmente no Redshift.
    - 4.4. Encerrar a conexão.
+
    
 [Codigo do Glue3](link)
 
 5. **Criação da Modelagem de Dados no Redshift:**
    - 5.1. Criação da estrutura das tabelas (FATO e DIMs) e inserção dos respectivos dados.
    - 5.2. Agendamento da query de criação das tabelas para que elas sejam refeitas periodicamente, mantendo os dados atualizados.
+
    
 [Queries do Redshift](link)
 
