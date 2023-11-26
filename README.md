@@ -4,6 +4,7 @@
 AWS, Spark/Pyspark, Python, SQL, AWS Lambda, AWS Glue (Jobs, Workflow), AWS CloudWatch, AWS IAM, AWS Redshift, AWS S3
 
 ## Vídeos
+
 [Arquitetura]()
 
 [Serviços AWS]()
@@ -27,9 +28,11 @@ Era essencial consolidar esses dados em um sistema unificado para análise e int
 
 ## Sobre os Dados de Origem (RAW)
 Os dados são fictícios, criados através de prompt no ChatGPT e com revisões e ajustes manuais para a consistência de dados.
+
 [Dados corretos para ingestão](https://github.com/cinthialet/aws-datalake-datawarehouse/tree/main/dados/arquivos_consumidos_correto)
 
 ## Arquitetura da Solução
+
 ![Imagem da Arquitetura](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake-aws-projeto-arquitetura.png)
 
 ### Passo a Passo do Processo pela Arquitetura
@@ -39,12 +42,12 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
  - 1.3. Deletar o arquivo CSV do bucket de entrada.
  - 1.4. Iniciar o Workflow da Pipeline de dados.
 
-[Codigo da Lambda](link)
+[Codigo da Lambda](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/codigos/lambda_datalake.py)
 
 2. **Glue job 1 usa Spark para a primeira camada de tratamento de dados (transformações simples)**
  - 2.1. Extrair os dados do arquivo CSV no bucket da camada Bronze.
  - 2.2. Correção da tipagem dos dados das colunas.
- - 2.3. Tratamento de dados duplicados (Registros 100% iguais)
+ - 2.3. Tratamento de dados duplicados (Registros 100% iguais) [Contagem de duplicados](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/dados/contagem_registros_duplicados.txt)
  - 2.4. Tratamento de valores NULL.
  - 2.5. Extração do ano das datas para uma nova coluna.
  - 2.6. Criar partições dos dados por ano.
@@ -52,9 +55,9 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
  - 2.8. Carregar os dados transformados para o bucket da camada Silver como parquet.
  - 2.9. O Workflow garante que, com o sucesso do Glue job 1, inicia-se o Glue job 2.
    
-[Transformações Glue Job 1](link-da-imagem-aqui)
+[Transformações Glue Job 1](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/dados/glue-transformacoes/gluejob1_transformacoes.txt)
 
-[Codigo do Glue1](link)
+[Codigo do Glue1](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/codigos/glue1.py)
 
 3. **Glue job 2 usa Spark para a segunda camada de tratamento de dados (transformações de negócio)**
  - 3.1. Extrair os dados do arquivo parquet no bucket da camada Silver.
@@ -66,9 +69,9 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
  - 3.7. Carregar os dados transformados para o bucket da camada Gold como parquet particionado por ano.
  - 3.8. O Workflow garante que, com o sucesso do Glue job 2, inicia-se o Glue job 3.
    
-[Transformações Glue Job 2](link-da-imagem-aqui)
+[Transformações Glue Job 2](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/dados/glue-transformacoes/gluejob2_transformacoes.txt)
 
-[Codigo do Glue2](link)
+[Codigo do Glue2](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/codigos/glue2.py)
 
 4. **Glue job 3 usa Spark para conectar ao DW e carregar os dados da camada Gold nele**
    - 4.1. Extrair os dados do bucket da camada Gold.
@@ -76,13 +79,13 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
    - 4.3. Inserir os dados na tabela previamente criada manualmente no Redshift.
    - 4.4. Encerrar a conexão.
 
-[Codigo do Glue3](link)
+[Codigo do Glue3](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/codigos/glue3.py)
 
 5. **Criação da Modelagem de Dados no Redshift**
    - 5.1. Criação da estrutura das tabelas (FATO e DIMs) e inserção dos respectivos dados.
    - 5.2. Agendamento da query de criação das tabelas para que elas sejam refeitas periodicamente, mantendo os dados atualizados.
      
-[Queries do Redshift](link)
+[Queries do Redshift](https://github.com/cinthialet/aws-datalake-datawarehouse/tree/main/codigos/redshift-queries)
 
 Criação Manual da tabela : 
 
@@ -104,6 +107,7 @@ Criação Manual da tabela :
 - Desconto Oferecido
 - Código de Desconto Usado
 ### Camada Bronze na AWS
+
 ![Imagem da bronze](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_bronze.png)
 
 ### Schema Silver (parquet particionado por ano)
@@ -121,7 +125,8 @@ Criação Manual da tabela :
 - Código de Desconto Usado
 - Arquivo de Origem
 ### Camada Silver na AWS
-![Imagem da bronze](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_silver1%20e%202.png)
+
+![Imagem da silver](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_silver1%20e%202.png)
 
 ### Schema Gold (parquet particionado por ano)
 - timestamp_do_registro
@@ -141,7 +146,8 @@ Criação Manual da tabela :
 - codigo_de_desconto_usado
 - arquivo_de_origem
 ### Camada Gold na AWS
-![Imagem da bronze](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_gold1%202%202.png)
+
+![Imagem da gold](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_gold1%202%202.png)
 
 ## Modelagem de Dados
 Abordagem clássica de tabelas DIMENSÃO e FATO.
