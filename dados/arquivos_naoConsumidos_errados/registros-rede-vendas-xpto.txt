@@ -1,0 +1,75 @@
+Timestamp do Registro,Nome,Sobrenome,Email,Telefone,Produto Adquirido,Valor da Compra,Canal,Plataforma de Interação,Campanha de Marketing,Vendedor,Desconto Oferecido,Código de Desconto Usado
+2014-05-01 08:10:00,João,Silva,joao1@email.com,11987654321,Smartphone,2500,Anúncio Online,Aplicativo Móvel,Campanha Verão 2023,,5%,VERAO2023
+2014-06-10 09:15:00,Maria,Pereira,maria2@email.com,11998765432,Notebook,3500,Loja Física,Website,Campanha Inverno 2023,Roberta,10%,INVERNO23
+2014-07-11 10:20:00,Pedro,Alves,pedro3@email.com,11976543210,Tablet,1200,E-mail Marketing,Website,Campanha Outono 2023,,0%,OUTONO23
+2014-05-15 10:30:00,Ana,Souza,ana4@email.com,11965432109,Smart TV,4000,Redes Sociais,Aplicativo Móvel,Campanha Primavera 2023,,15%,PRIMAVERA23
+2014-08-10 11:00:00,Bruno,Rocha,bruno5@email.com,11954321098,Headphone,500,Loja Física,Website,Campanha Verão 2023,Renata,5%,VERAO2023
+2018-06-15 11:45:00,Camila,Costa,camila6@email.com,11943210987,Smartwatch,800,Redes Sociais,Aplicativo Móvel,Campanha Inverno 2023,,10%,INVERNO23
+2018-07-20 12:30:00,Diego,Cardoso,diego7@email.com,11932109876,Mouse,50,E-mail Marketing,Website,Campanha Outono 2023,,0%,OUTONO23
+2018-08-25 01:00:00,Elisa,Barros,elisa8@email.com,11921098765,Teclado,100,Loja Física,Aplicativo Móvel,Campanha Primavera 2023,Juliana,5%,PRIMAVERA23
+2018-05-30 02:30:00,Fábio,Machado,fabio9@email.com,11910987654,Monitor,900,Redes Sociais,Website,Campanha Verão 2023,,15%,VERAO2023
+2018-06-05 02:45:00,Gabriela,Ribeiro,gabi10@email.com,11909876543,Caixa de Som,350,Loja Física,Website,Campanha Inverno 2023,Carlos,10%,INVERNO23
+2018-05-01 08:10:00,João,Silva,joao1@email.com,11987654321,Smartphone,2500,Anúncio Online,Aplicativo Móvel,Campanha Verão 2023,,5%,VERAO2023
+2023-06-10 09:15:00,Maria,Pereira,maria2@email.com,11998765432,Notebook,3500,Loja Física,Website,Campanha Inverno 2023,Roberta,10%,INVERNO23
+2023-07-11 10:20:00,Pedro,Alves,pedro3@email.com,11976543210,Tablet,1200,E-mail Marketing,Website,Campanha Outono 2023,,0%,OUTONO23
+2023-08-10 11:00:00,Bruno,Rocha,bruno5@email.com,11954321098,Headphone,500,Loja Física,Website,Campanha Verão 2023,Renata,5%,VERAO2023
+2023-06-05 02:45:00,Gabriela,Ribeiro,gabi10@email.com,11909876543,Caixa de Som,350,Loja Física,Website,Campanha Inverno 2023,Carlos,10%,INVERNO23
+2020-09-01 09:10:00,Roberto,Andrade,roberto1@email.com,12987654320,Livro,50,Anúncio Online,Aplicativo Móvel,Campanha Primavera 2023,,0%,PRIMAVERA23
+2020-09-05 10:20:00,Juliana,Martins,juliana2@email.com,12998765431,Câmera,1500,Loja Física,Website,Campanha Primavera 2023,Roberta,10%,PRIMAVERA23
+2020-09-10 11:30:00,Ricardo,Batista,ricardo3@email.com,12976543219,Jogo de Videogame,200,E-mail Marketing,Website,Campanha Primavera 2023,,5%,PRIMAVERA23
+2020-09-15 12:40:00,Larissa,Melo,larissa4@email.com,12965432108,Console de Videogame,2500,Redes Sociais,Aplicativo Móvel,Campanha Primavera 2023,,15%,PRIMAVERA23
+2020-09-20 13:50:00,Renato,Carvalho,renato5@email.com,12954321097,Blu-Ray de Filme,100,Loja Física,Website,Campanha Primavera 2023,Renata,10%,PRIMAVERA23
+2020-09-25 14:00:00,Thais,Oliveira,thais6@email.com,12943210986,Livro Digital,30,Redes Sociais,Aplicativo Móvel,Campanha Primavera 2023,,5%,PRIMAVERA23
+2020-09-30 14:10:00,Leonardo,Peixoto,leo7@email.com,12932109875,Cadeira Gamer,700,E-mail Marketing,Website,Campanha Primavera 2023,,10%,PRIMAVERA23
+2020-10-05 14:20:00,Priscila,Lima,priscila8@email.com,12921098764,Mochila,120,Loja Física,Aplicativo Móvel,Campanha Verão 2023,Juliana,5%,VERAO2023
+2020-10-10 14:30:00,Felipe,Castro,felipe9@email.com,12910987653,Mousepad,40,Redes Sociais,Website,Campanha Verão 2023,,10%,VERAO2023
+2020-10-15 14:40:00,Isabela,Ramos,isabela10@email.com,12909876542,Webcam,300,Loja Física,Website,Campanha Verão 2023,Carlos,5%,VERAO2023
+2021-10-20 14:50:00,Sergio,Fonseca,sergio11@email.com,12908765431,Teclado Mecânico,500,Anúncio Online,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO2023
+2021-10-25 15:00:00,Luciana,Porto,luciana12@email.com,12907654320,Monitor 4K,2500,Loja Física,Website,Campanha Verão 2023,Roberta,15%,VERAO2023
+2021-10-30 15:10:00,Caio,Nogueira,caio13@email.com,12906543210,Relógio Inteligente,900,E-mail Marketing,Website,Campanha Verão 2023,,10%,VERAO2023
+2021-11-04 15:20:00,Flavia,Barbosa,flavia14@email.com,12905432109,Notebook Gamer,5000,Redes Sociais,Aplicativo Móvel,Campanha Verão 2023,,15%,VERAO2023
+2021-11-09 15:30:00,Douglas,Pires,douglas15@email.com,12904321098,Caixa de Som Bluetooth,300,Loja Física,Aplicativo Móvel,Campanha Verão 2023,Carlos,10%,VERAO2023
+2021-09-01 09:10:00,Roberto,Andrade,roberto1@email.com,12987654320,Livro,50,Anúncio Online,Aplicativo Móvel,Campanha Primavera 2023,,0%,PRIMAVERA23
+2021-09-05 10:20:00,Juliana,Martins,juliana2@email.com,12998765431,Câmera,1500,Loja Física,Website,Campanha Primavera 2023,Roberta,10%,PRIMAVERA23
+2021-09-10 11:30:00,Ricardo,Batista,ricardo3@email.com,12976543219,Jogo de Videogame,200,E-mail Marketing,Website,Campanha Primavera 2023,,5%,PRIMAVERA23
+2021-09-15 12:40:00,Larissa,Melo,larissa4@email.com,12965432108,Console de Videogame,2500,Redes Sociais,Aplicativo Móvel,Campanha Primavera 2023,,15%,PRIMAVERA23
+2021-09-20 13:50:00,Renato,Carvalho,renato5@email.com,12954321097,Blu-Ray de Filme,100,Loja Física,Website,Campanha Primavera 2023,Renata,10%,PRIMAVERA23
+2021-09-03 10:10:00,Fabiana,Rocha,fabiana1@email.com,13587654320,Celular,1500,Anúncio Online,Aplicativo Móvel,Campanha Outono 2023,,10%,OUTONO23
+2021-09-07 11:15:00,Matheus,Silva,matheus2@email.com,13598765431,Headset,300,Loja Física,Website,Campanha Outono 2023,Lucia,5%,OUTONO23
+2023-09-12 12:18:00,Gabriela,Pereira,gabriela3@email.com,13576543219,Tablet,900,E-mail Marketing,Website,Campanha Outono 2023,,5%,OUTONO23
+2023-09-16 13:25:00,Bruno,Moreira,bruno4@email.com,13565432108,Smartwatch,700,Redes Sociais,Aplicativo Móvel,Campanha Outono 2023,,10%,OUTONO23
+2023-09-22 14:35:00,Isadora,Almeida,isadora5@email.com,13554321097,Bicicleta Elétrica,2500,Loja Física,Website,Campanha Outono 2023,Rogério,15%,OUTONO23
+2023-09-28 15:40:00,André,Santos,andre6@email.com,13543210986,Cafeteira,400,Redes Sociais,Aplicativo Móvel,Campanha Outono 2023,,10%,OUTONO23
+2023-10-03 16:45:00,Viviane,Dias,viviane7@email.com,13532109875,Impressora 3D,2000,E-mail Marketing,Website,Campanha Inverno 2023,,10%,INVERNO23
+2023-10-08 17:50:00,Daniel,Gomes,daniel8@email.com,13521098764,Drone,1500,Loja Física,Aplicativo Móvel,Campanha Inverno 2023,Patrícia,5%,INVERNO23
+2023-10-13 18:55:00,Aline,Rodrigues,aline9@email.com,13510987653,Geladeira,3500,Redes Sociais,Website,Campanha Inverno 2023,,10%,INVERNO23
+2023-10-19 19:05:00,Márcio,Mello,marcio10@email.com,13509876542,Notebook,4000,Loja Física,Website,Campanha Inverno 2023,Vanessa,5%,INVERNO23
+2023-10-24 20:15:00,Tatiana,Lopes,tatiana11@email.com,13508765431,Fritadeira Elétrica,600,Anúncio Online,Aplicativo Móvel,Campanha Inverno 2023,,10%,INVERNO23
+2023-10-29 21:20:00,Pedro,Ibarra,pedro12@email.com,13507654320,TV 4K,4500,Loja Física,Website,Campanha Inverno 2023,Luiza,10%,INVERNO23
+2023-11-03 22:25:00,Clara,Ferreira,clara13@email.com,13506543210,Kindle,350,E-mail Marketing,Website,Campanha Inverno 2023,,10%,INVERNO23
+2023-11-08 23:30:00,Rogério,Miranda,rogerio14@email.com,13505432109,Livro Digital,40,Loja Física,Website,Campanha Inverno 2023,Cecília,0%,INVERNO23
+2023-09-07 11:15:00,Matheus,Silva,matheus2@email.com,13598765431,Headset,300,Loja Física,Website,Campanha Outono 2023,Lucia,5%,OUTONO23
+2023-10-03 16:45:00,Viviane,Dias,viviane7@email.com,13532109875,Impressora 3D,2000,E-mail Marketing,Website,Campanha Inverno 2023,,10%,INVERNO23
+2023-10-08 17:50:00,Daniel,Gomes,daniel8@email.com,13521098764,Drone,1500,Loja Física,Aplicativo Móvel,Campanha Inverno 2023,Patrícia,5%,INVERNO23
+2023-10-13 18:55:00,Aline,Rodrigues,aline9@email.com,13510987653,Geladeira,3500,Redes Sociais,Website,Campanha Inverno 2023,,10%,INVERNO23
+2023-10-19 19:05:00,Márcio,Mello,marcio10@email.com,13509876542,Notebook,4000,Loja Física,Website,Campanha Inverno 2023,Vanessa,5%,INVERNO23
+2023-11-10 10:05:00,Mariana,Costa,mariana1@email.com,14512345678,Câmera Digital,1000,Anúncio Online,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO23
+2023-11-12 11:10:00,Guilherme,Barros,guilherme2@email.com,14523456789,Soundbar,550,Loja Física,Website,Campanha Verão 2023,Juliana,5%,VERAO23
+2023-11-14 12:15:00,Elisa,Ribeiro,elisa3@email.com,14534567890,Teclado Mecânico,300,E-mail Marketing,Website,Campanha Verão 2023,,5%,VERAO23
+2023-11-17 13:18:00,Renato,Peixoto,renato4@email.com,14545678901,Mouse Gamer,150,Redes Sociais,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO23
+2023-11-20 14:23:00,Carolina,Queiroz,carolina5@email.com,14556789012,Livro Físico,50,Loja Física,Website,Campanha Verão 2023,Antonio,15%,VERAO23
+2023-11-23 15:27:00,Henrique,Oliveira,henrique6@email.com,14567890123,SmartTV,2500,Redes Sociais,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO23
+2023-11-27 16:32:00,Julia,Martins,julia7@email.com,14578901234,Aspirador Robô,800,E-mail Marketing,Website,Campanha Verão 2023,,10%,VERAO23
+2023-12-01 17:36:00,Felipe,Camargo,felipe8@email.com,14589012345,Console de Video Game,2000,Loja Física,Aplicativo Móvel,Campanha Verão 2023,Luciana,5%,VERAO23
+2023-12-04 18:39:00,Natália,Porto,natalia9@email.com,14590123456,Laptop,3500,Redes Sociais,Website,Campanha Verão 2023,,10%,VERAO23
+2023-12-08 19:43:00,Leonardo,Freitas,leonardo10@email.com,14501234567,Bicicleta de Corrida,1000,Loja Física,Website,Campanha Verão 2023,Lorena,5%,VERAO23
+2023-12-11 20:48:00,Larissa,Silveira,larissa11@email.com,14512345678,Micro-ondas,500,Anúncio Online,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO23
+2023-12-15 21:51:00,Paulo,Souza,paulo12@email.com,14523456789,Relógio Inteligente,600,Loja Física,Website,Campanha Verão 2023,Beatriz,10%,VERAO23
+2023-12-19 22:54:00,Tereza,Cardoso,tereza13@email.com,14534567890,Sofá,2500,E-mail Marketing,Website,Campanha Verão 2023,,10%,VERAO23
+2023-12-24 23:59:00,Rodrigo,Ferreira,rodrigo14@email.com,14545678901,Fone de Ouvido,250,Redes Sociais,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO23
+2023-12-28 11:05:00,Bianca,Alves,bianca15@email.com,14556789012,Ventilador,150,Loja Física,Website,Campanha Verão 2023,Lucas,10%,VERAO23
+2023-11-12 11:10:00,Guilherme,Barros,guilherme2@email.com,14523456789,Soundbar,550,Loja Física,Website,Campanha Verão 2023,Juliana,5%,VERAO23
+2023-11-14 12:15:00,Elisa,Ribeiro,elisa3@email.com,14534567890,Teclado Mecânico,300,E-mail Marketing,Website,Campanha Verão 2023,,5%,VERAO23
+2023-11-17 13:18:00,Renato,Peixoto,renato4@email.com,14545678901,Mouse Gamer,150,Redes Sociais,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO23
+2023-12-08 19:43:00,Leonardo,Freitas,leonardo10@email.com,14501234567,Bicicleta de Corrida,1000,Loja Física,Website,Campanha Verão 2023,Lorena,5%,VERAO23
+2023-12-24 23:59:00,Rodrigo,Ferreira,rodrigo14@email.com,14545678901,Fone de Ouvido,250,Redes Sociais,Aplicativo Móvel,Campanha Verão 2023,,10%,VERAO23

@@ -1,0 +1,59 @@
+Listagem de vendas duplicadas
+
+registros_gerais.csv
+-----------------------------
+1 Daniel Gomes
+2 Elisa Ribeiro
+3 Bruno Rocha 
+4 Aline Rodrigues
+5 Gabriela Ribeiro
+6 Guilherme Barros
+7 João Silva
+8 Juliana Martins 
+9 Leonardo Freitas
+10 Márcio Mello
+11 Matheus Silva 
+12 Pedro Alves
+13 Roberto Andrades
+14 Ricardo Batista
+15 Renato Carvalho
+16 Renato Peixoto
+17 Rodrigo Ferreira
+18 Viviane Dias
+-----
+total de registros : 74 
+registros duplicados : 18 
+Registros únicos : 56 (devem ir para o Redshift)
+
+
+registros_lojas_fisicas.csv
+-----------------------------
+1 Paulo Caldeira
+-----
+total de registros : 4 
+registros duplicados : 1 
+Registros únicos : 3 (devem ir para o Redshift)
+
+
+registros_website.csv
+-----------------------------
+Fabi Araujo x2
+-----
+total de registros : 7 
+registros duplicados : 2 
+Registros únicos : 5 (devem ir para o Redshift)
+
+
+registros_aplicativo.csv
+-----------------------------
+Leonarda Freitas
+Romario Ferreira
+-----
+total de registros : 8 
+registros duplicados : 2 
+Registros únicos : 6 (devem ir para o Redshift)
+
+------------------------------------------------------
+Total de registros inseridos no sistema : 93
+Total de Registros duplicados : 23
+Total inserido no Redshift por execução do sistema : 70
