@@ -1,13 +1,19 @@
 # Pipeline de Dados Automatizada para Análise de Vendas Multicanais com Data Lake e Data Warehouse Modelado
 
-## Stack:
+## Stack
 AWS, Spark/Pyspark, Python, SQL, AWS Lambda, AWS Glue (Jobs, Workflow), AWS CloudWatch, AWS IAM, AWS Redshift, AWS S3
 
-## Estudo de Caso:
+## Vídeos
+[Arquitetura]()
+[Serviços AWS]()
+[Redshift e Modelagem]()
+[Demo]()
+
+## Estudo de Caso
 Uma marca de varejo requisitou uma solução para a integração dos dados de vendas de diversas plataformas. 
 Era essencial consolidar esses dados em um sistema unificado para análise e inteligência de negócios.
 
-### Requisitos:
+### Requisitos do Caso
 - Identificar o arquivo correto para iniciar o processamento : arquivos .csv que iniciam com a palavra 'registros_'
 - Identificar, para cada registro, o arquivo de origem ingerido com a data/hora em que foi ingerido na solução - Lambda
 - Automatização da ingestão e processamento de arquivos CSV oriundos de diversas plataformas - AWS Glue Workflow
@@ -16,13 +22,13 @@ Era essencial consolidar esses dados em um sistema unificado para análise e int
 - Preocupação com performance e custo de armazenamento - Spark, particionamento dos dados, arquivo parquet
 - Estruturação de um Data Warehouse atualizado e rastreável - Modelagem de dados Estrela
 
-## Sobre os Dados de Origem (RAW):
+## Sobre os Dados de Origem (RAW)
 Os dados são fictícios, criados através de prompt no ChatGPT e com revisões e ajustes manuais para a consistência de dados.
 
-## Arquitetura da Solução:
+## Arquitetura da Solução
 ![Imagem da Arquitetura](link-da-imagem-aqui)
 
-### Passo a Passo do Processo pela Arquitetura:
+### Passo a Passo do Processo pela Arquitetura
 1. **Lambda detecta o evento de carregar o csv no bucket inicial:**
  - 1.1. Renomear o arquivo, colocando a timestamp do evento.
  - 1.2. Mover o arquivo CSV renomeado do bucket de entrada para o da camada Bronze.
@@ -31,7 +37,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 
 [Codigo da Lambda](link)
 
-2. **Glue job 1 usa Spark para a primeira camada de tratamento de dados (transformações simples):**
+2. **Glue job 1 usa Spark para a primeira camada de tratamento de dados (transformações simples)**
  - 2.1. Extrair os dados do arquivo CSV no bucket da camada Bronze.
  - 2.2. Correção da tipagem dos dados das colunas.
  - 2.3. Tratamento de dados duplicados (Registros 100% iguais)
@@ -46,7 +52,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 
 [Codigo do Glue1](link)
 
-3. **Glue job 2 usa Spark para a segunda camada de tratamento de dados (transformações de negócio):**
+3. **Glue job 2 usa Spark para a segunda camada de tratamento de dados (transformações de negócio)**
  - 3.1. Extrair os dados do arquivo parquet no bucket da camada Silver.
  - 3.2. Padronização dos nomes das colunas.
  - 3.3. Padronização do nome dos clientes - nome completo.
@@ -60,7 +66,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 
 [Codigo do Glue2](link)
 
-4. **Glue job 3 usa Spark para conectar ao DW e carregar os dados da camada Gold nele:**
+4. **Glue job 3 usa Spark para conectar ao DW e carregar os dados da camada Gold nele**
    - 4.1. Extrair os dados do bucket da camada Gold.
    - 4.2. Conectar com o Redshift via conexão JDBC.
    - 4.3. Inserir os dados na tabela previamente criada manualmente no Redshift.
@@ -69,7 +75,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
    
 [Codigo do Glue3](link)
 
-5. **Criação da Modelagem de Dados no Redshift:**
+5. **Criação da Modelagem de Dados no Redshift**
    - 5.1. Criação da estrutura das tabelas (FATO e DIMs) e inserção dos respectivos dados.
    - 5.2. Agendamento da query de criação das tabelas para que elas sejam refeitas periodicamente, mantendo os dados atualizados.
 
@@ -94,7 +100,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 ### Camada Bronze na AWS
 ![Imagem da bronze](link-da-imagem-aqui)
 
-### Schema Silver (parquet particionado por ano):
+### Schema Silver (parquet particionado por ano)
 - Nome
 - Sobrenome
 - Email
@@ -111,7 +117,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 ### Camada Silver na AWS
 ![Imagem da bronze](link-da-imagem-aqui)
 
-### Schema Gold (parquet particionado por ano):
+### Schema Gold (parquet particionado por ano)
 - timestamp_do_registro
 - turno_compra
 - nome_completo
@@ -131,7 +137,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 ### Camada Gold na AWS
 ![Imagem da bronze](link-da-imagem-aqui)
 
-## Modelagem de Dados:
+## Modelagem de Dados
 Abordagem clássica de tabelas DIMENSÃO e FATO.
 Os identificadores únicos de cada registro (chave primária) foram criados no Redshift com SQL.
 
