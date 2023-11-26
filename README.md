@@ -27,6 +27,7 @@ Era essencial consolidar esses dados em um sistema unificado para análise e int
 
 ## Sobre os Dados de Origem (RAW)
 Os dados são fictícios, criados através de prompt no ChatGPT e com revisões e ajustes manuais para a consistência de dados.
+[Dados corretos para ingestão](https://github.com/cinthialet/aws-datalake-datawarehouse/tree/main/dados/arquivos_consumidos_correto)
 
 ## Arquitetura da Solução
 ![Imagem da Arquitetura](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake-aws-projeto-arquitetura.png)
