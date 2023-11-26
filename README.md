@@ -5,13 +5,13 @@ AWS, Spark/Pyspark, Python, SQL, AWS Lambda, AWS Glue (Jobs, Workflow), AWS Clou
 
 ## Vídeos
 
-[Arquitetura]()
+[Arquitetura](https://youtu.be/fHP9hwFhnF0)
 
-[Serviços AWS]()
+[Serviços AWS](https://youtu.be/F9iT2KM7z6Q)
 
-[Redshift e Modelagem]()
+[Redshift e Modelagem](https://youtu.be/vKehWl7Klik)
 
-[Demo]()
+[Demo](https://youtu.be/fQ9547uQbvw)
 
 ## Estudo de Caso
 Uma marca de varejo requisitou uma solução para a integração dos dados de vendas de diversas plataformas. 
