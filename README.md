@@ -17,7 +17,7 @@ Uma marca de varejo requisitou uma solução para a integração dos dados de ve
 Era essencial consolidar esses dados em um sistema unificado para análise e inteligência de negócios.
 
 ### Requisitos do Caso
-- Identificar o arquivo correto para iniciar o processamento : arquivos .csv que iniciam com a palavra 'registros_'
+- Identificar o arquivo correto para iniciar o processamento : arquivos .csv que iniciam com a palavra 'registros'
 - Identificar, para cada registro, o arquivo de origem ingerido com a data/hora em que foi ingerido na solução - Lambda
 - Automatização da ingestão e processamento de arquivos CSV oriundos de diversas plataformas - AWS Glue Workflow
 - Estruturação de solução para integração e centralização dos dados - Data Lake
@@ -29,7 +29,7 @@ Era essencial consolidar esses dados em um sistema unificado para análise e int
 Os dados são fictícios, criados através de prompt no ChatGPT e com revisões e ajustes manuais para a consistência de dados.
 
 ## Arquitetura da Solução
-![Imagem da Arquitetura](link-da-imagem-aqui)
+![Imagem da Arquitetura](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake-aws-projeto-arquitetura.png)
 
 ### Passo a Passo do Processo pela Arquitetura
 1. **Lambda detecta o evento de carregar o csv no bucket inicial:**
@@ -144,4 +144,4 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 Abordagem clássica de tabelas DIMENSÃO e FATO.
 Os identificadores únicos de cada registro (chave primária) foram criados no Redshift com SQL.
 
-![Diagrama de Modelagem](link-do-diagrama-aqui)
+![Diagrama de Modelagem](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/diagrama-relacional-de-entidades-.png)
