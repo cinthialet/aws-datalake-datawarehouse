@@ -75,15 +75,17 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
    - 4.3. Inserir os dados na tabela previamente criada manualmente no Redshift.
    - 4.4. Encerrar a conexão.
 
-   
 [Codigo do Glue3](link)
 
 5. **Criação da Modelagem de Dados no Redshift**
    - 5.1. Criação da estrutura das tabelas (FATO e DIMs) e inserção dos respectivos dados.
    - 5.2. Agendamento da query de criação das tabelas para que elas sejam refeitas periodicamente, mantendo os dados atualizados.
-
-   
+     
 [Queries do Redshift](link)
+
+Criação Manual da tabela : 
+
+![Criação Manual da Tabela](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/redshift-criacao-tabela.png)
 
 ## Camadas do Datalake
 ### Schema RAW/Bronze (csv):
@@ -101,7 +103,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 - Desconto Oferecido
 - Código de Desconto Usado
 ### Camada Bronze na AWS
-![Imagem da bronze](link-da-imagem-aqui)
+![Imagem da bronze](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_bronze.png)
 
 ### Schema Silver (parquet particionado por ano)
 - Nome
@@ -118,7 +120,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 - Código de Desconto Usado
 - Arquivo de Origem
 ### Camada Silver na AWS
-![Imagem da bronze](link-da-imagem-aqui)
+![Imagem da bronze](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_silver1%20e%202.png)
 
 ### Schema Gold (parquet particionado por ano)
 - timestamp_do_registro
@@ -138,7 +140,7 @@ Os dados são fictícios, criados através de prompt no ChatGPT e com revisões 
 - codigo_de_desconto_usado
 - arquivo_de_origem
 ### Camada Gold na AWS
-![Imagem da bronze](link-da-imagem-aqui)
+![Imagem da bronze](https://github.com/cinthialet/aws-datalake-datawarehouse/blob/main/img/datalake_gold1%202%202.png)
 
 ## Modelagem de Dados
 Abordagem clássica de tabelas DIMENSÃO e FATO.
