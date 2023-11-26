@@ -1,0 +1,192 @@
+
+Implementação Projeto AWS
+
+########## Buckets #############################################################################################
+1. Criar os buckets
+- 'start-bucket-project' , bucket que receberá o arquivo csv. Lambda monitora esse evento para disparar a pipeline do datalake.
+- 'datalake-project-aws' , bucket que terá as camadas do datalake, bronze/silver/gold
+- 'glue-jobs-params' , bucket que guardará os parâmetros dinâmicos que devem ser passados para os glue jobs em pastas, com arquivos JSON.
+	- nome do arquivo, que muda a cada execução pela timestamp
+	- bucket do datalake
+
+########## Lambda #############################################################################################
+2. Criar as permissões no IAM para Lambda
+- Função para o bucket S3
+   . AmazonS3FullAccess
+- Função para o glue
+   . AWSGlueServiceRole    
+- Função para o cloudwatch
+   . CloudWatchLogsFullAccess
+   
+3. Criar Função Lambda
+- Definir o nome (datalake-disparo)
+- Definir a linguagem como python
+- Manter a arquitetura como x86_64
+- Alterar a função de execução padrão > Usar uma função existente > Escolher a função IAM criada no passo 2      
+- Criar a lambda
+
+3.1 Adicionar o gatilho da Lambda
+- Configuração do gatilho (será o upload do arquivo com início 'registros' e final '.csv' no bucket):
+ . Selecionar a origem como S3 > Escolher o bucket que a lambda vai monitorar (start-bucket-project)
+ . Selecionar o tipo do evento como 'PUT' (limitando para upload manual no bucket)
+ . Selecionar o prefixo como 'registros' (limitando para o início do nome do arquivo esperado)
+ . Selecionar o sufixo como '.csv' (limitando para o tipo de arquivo esperado)
+ 
+3.2 Configurar as variáveis de ambiente da lambda (aba configurações)
+ . DATALAKE_BUCKET : nome do bucket do datalake (datalake-project-aws)
+ . DATALAKE_LAYER : nome da primeira camada do datalake (bronze)
+ . GLUE_WORKFLOW_NAME : nome do workflow do glue que a lambda irá disparar (datalake-redshift-pipeline)
+ . S3_JOB_PARAMS : bucket que salva os arquivos de parâmetros dinâmicos (glue-jobs-params)
+ . PARAMS_KEY_JOB : local em que a lambda escreverá os parâmetros dinamicos em json, para ser acessado pelo job (params.json )
+ . Colar o código python da lambda na aba Código e clicar em deploy, para salvar.
+
+########## Glue Datalake Jobs #############################################################################################
+4. Criar as permissões no IAM para os Jobs do Datalake (datalake-gluejobs)
+>> A mesma IAM role será usada pelos 2 jobs do datalake
+- Função para o bucket S3
+   . AmazonS3FullAccess   
+- Função para o cloudwatch
+   . CloudWatchLogsFullAccess
+- Função para o Glue (necessária para o workflow de automação da pipeline)
+   . AWSGlueConsoleFullAccess
+
+5. Criação do Glue job 1 - primeira etapa de transformação dos dados do datalake
+ . Criar job tipo SPARK de nome 'datalake-job-1' pelo script editor e colocar o código.
+ . Aba Job details > Configurar numero de workers para o mínimo (2) (performance reduzida, porém custos mais baixos por execução) e 
+ linguagem python (para usar Pyspark ao invés de Scala). Escolher o IAM role datalake-gluejobs criado no passo 4.
+ . Aba Job details > Advanced properties > Adicionar job parameters
+ 		--SOURCE_LAYER : bronze
+ 		--DESTINY_LAYER : silver
+ 		--S3_JOB_PARAMS : glue-jobs-params
+ 		--PARAMS_KEY_JOB : params.json , local onde o job1 lerá os parâmetro dinamicos passado pela lambda
+ 		
+6. Criação do Glue job 2 - segunda etapa de transformação dos dados do datalake
+ . Criar job tipo SPARK de nome 'datalake-job-2' pelo script editor e colocar o código.
+ . Aba Job details > Configurar numero de workers para o mínimo (2) e linguagem python. Escolher o IAM role datalake-gluejobs criado no passo 4.
+ . Aba Job details > Advanced properties > Adicionar job parameters
+ 		--SOURCE_LAYER : silver
+ 		--DESTINY_LAYER : gold
+ 		--S3_JOB_PARAMS : glue-jobs-params
+ 		--PARAMS_KEY_JOB : params.json
+
+########## Glue carregament Redshift + Redshift #############################################################################################		
+7. Criar IAM role 'datalake-load-redshift' com permissões para o job que carrega os dados no Redshift 
+- Função para o bucket S3
+   . AmazonS3FullAccess   
+- Função para o cloudwatch
+   . CloudWatchLogsFullAccess
+- Função para o Redshift
+   . AmazonRedshiftFullAccess 
+- Funçao para o Glue (necessária para criar a conexão e workflow)
+   . AWSGlueConsoleFullAccess
+- Funçao para o EC2 (necessária para lidar com a VPC, rede privada virtual, do redshift)
+   . AmazonEC2FullAccess 
+
+8. Criar o cluster do Redshift e configurar o banco de dados
+ . Criar um novo cluster chamado 'redshift-datalake-project' do tipo dc2.large (free tier) e 1 nó (mínimo, por questão de custos).
+ . Use o banco de dados padrão ('dev') , configure o usuário admin e a senha desse usuario. [Guarda essas informações, para a conexão do glue]
+ . Esperar o cluster estar available (pode demorar alguns minutos)
+ . No EC2, configure o grupo de segurança desse cluster para permitir que o AWS Glue se conecte ao Redshift:
+ 	- EC2 > Grupos de segurança > Selecionar o associado ao Redshift
+ 	- Criar regras de entrada > grupo do Redshift, colocar origem personalizada e valor 0.0.0.0/0 , que permite acesso ao Redshift de qualquer 
+ 	endereço, o que fará com que o Glue consiga o acesso.[Não recomendado para ambiente PROD]
+  . No cluster do redshift > consultar dados > consultar no editor de consultas v2
+  	- Clicar no cluster à esquerda (redshift-datalake-project) 
+  	- No banco de dados 'dev', criar um novo o schema 'registros'
+  	- No schema 'registros, criar manualmente a tabela 'registros_vendas', usando os metadados definidos da camada gold, como na figura abaixo:
+  		<figura criacao tabela aqui>
+   
+9. Criar a conexão do glue job 3 para se conectar ao redshift
+AWS Glue > Data Connections > Create Connection
+  . Preencha com o nome da conexão, 'dyf-conn'
+  . Connection type > selecionar Amazon Redshift
+  . Connection access > escolher a instancia criada ('redshift-datalake-project') , o nome do banco de dados ('dev')
+  . Escolher Credential type como Username and password e colocar o usuario e senha salvos no passo 8.
+  . Criar a conexão
+  . Editar a conexão criada > Network options > Configurar, VPC subnet e security group com os que foram automaticamente criados para o Redshift.
+  . Selecionar a conexão > Actions > Test Connection > Escolher o IAM role do job 3
+
+10. Criação do Glue job 3 - ingestão dos dados da camada gold para o Redshift (Datawarehouse)
+ . Criar job 'datalake-load-redshift' tipo SPARK pelo script editor
+ . Configurar numero de workers para o mínimo (2) e linguagem python. Escolher o IAM role datalake-load-redshift criado no passo 7.
+ . Advanced properties > Connections : selecionar a conexão criada no passo 9
+ . Advanced properties > Adicionar job parameters
+ 		--SOURCE_LAYER : gold
+ 		--S3_JOB_PARAMS : glue-jobs-params
+ 		--PARAMS_KEY_JOB : params.json
+		--REDSHIFT_DB : dev
+		--REDSHIFT_SCHEMA : registros
+		--REDSHIFT_TABLE : registros_vendas
+		
+		
+  . Colocar o código na aba script.
+
+########## Glue Workflow #############################################################################################		
+11. Criar o Workflow dos glue jobs - Para automatizar a pipeline de transformação de dados
+ . AWS Glue > Workflows (orchestration) > Add Workflow
+ . Criar um workflow de nome 'datalake-redshift-pipeline', como definido no passo 3
+ . Abrir o workflow criado > Add trigger
+ 	- Para datalake-job-1:
+		-- Add new > criar um nome para o trigger ('trigger-DatalakeJob1') , trigger type On demand.
+		-- Clicar em 'Add node'> aba jobs > selecionar datalake-job-1 
+			--> On demand, pois será triggado por processo automatizado pelo código da lambda, quando esta for disparada.
+			--> Quando a função Lambda chamar 'start_workflow_run', o trigger de início criado será acionado, e o Glue Job 1 será executado. 
+		
+	- Para datalake-job-2:
+		-- Add new > criar um nome para o trigger ('trigger-DatalakeJob2') , trigger type Event, Trigger logic Start after ANY watched event.
+		-- Clicar em 'Add node' à ESQUERDA > selecionar datalake-job-1 , Job event to watch SUCCEEDED 
+			--> Garante que trigger-DatalakeJob2 só dispara no evento de sucesso do datalake-job-1
+		-- Clicar em 'Add node' à DIREITA > selecionar datalake-job-2
+			--> Garante que trigger-DatalakeJob2 irá iniciar o  datalake-job-2 quando for disparado
+			
+	- Para datalake-load-redshift
+		-- Ainda no workflow datalake-redshift-pipeline, clicar em Action > Add trigger
+		-- Add new > criar um nome para o trigger ('trigger-RedshiftLoad') , trigger type Event, Trigger logic Start after ANY watched event.
+		-- Clicar em 'Add node' à ESQUERDA > selecionar datalake-job-2 , Job event to watch SUCCEEDED 
+			--> Garante que trigger-RedshiftLoad só dispara no evento de sucesso do datalake-job-2
+		-- Clicar em 'Add node' à DIREITA > selecionar datalake-load-redshift
+			--> Garante que trigger-RedshiftLoad irá iniciar o datalake-load-redshift quando for disparado
+
+########## Modelagem de dados e Agendamento #############################################################################################		
+12. Normalização dos dados - Aplicação de modelagem de dados, tipo Estrela, no Redshift pelo consultor de query v2
+
+ >>> Sobre a criação de chaves primárias no Redshift : No Amazon Redshift, a coluna IDENTITY é usada para criar valores automáticos, parecido 
+ com o autoincremento em outros bancos de dados (que o Redshift não suporta). Ao criar uma tabela, pode-se definir uma coluna com IDENTITY, 
+ escolhendo um valor de início e um valor de incremento. A cada nova linha adicionada à tabela, o Redshift gera automaticamente um novo valor
+ para essa coluna. Essa será a estratégia para contornar a limitação do Redshift de autoincremental.
+ . Criar as tabelas dimensões, com as respectivas chaves primárias
+ . Criar a tabela fato , relacionando com as tabelas DIM (chaves estrangeiras) e criar sua propria chave primária.
+ . Salvar a query que cria as tabelas (Modelagem_dados_dim_fato)
+ . Criar a IAM role (redshift-query-agendamento) necessária para o agendamento da query, para o Redshift, com as permissões:
+	 AmazonEventBridgeFullAccess
+	 AmazonRedshiftDataFullAccess
+ . Editar a política de confiança da role criada no ponto anterior para : 
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+          "redshift.amazonaws.com",
+          "events.amazonaws.com"
+        ]
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+ . Clicar na caixa de seleção do cluster redshift > Ações > Gerenciar funções do IAM > Adicionar o IAM role criado (redshift-query-agendamento). 
+ Espere o cluster aplicar as modificações e ficar Available.
+ 
+ . No consultor de dados v2, Agendar a frequência com que o script sql de criar as tabelas DIM e FATO irá rodar, para receber os novos dados da pipe.
+    -- Clicar em  Schedule
+    	--- Scheduler permissions : selecionar a IAM role criada, deixar Temporary credentials, escolher o cluster usado , o banco de dados usado (dev) 
+    	e o usuario do banco de dados criado no passo 8.
+    	--- Query information : Colocar o nome da query salva (Modelagem_dados_dim_fato)
+    	--- Scheduling options : Run frequency, Schedule repeats every 8 minutes on Monday , Tuesday, Wednesday, Thursday, Friday
+    -- documentacao : https://docs.aws.amazon.com/redshift/latest/mgmt/query-editor-v2-schedule-query.html
+
+
+  

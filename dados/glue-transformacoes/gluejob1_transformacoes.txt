@@ -1,0 +1,40 @@
+1. Correção da tipagem dos dados
+Objetivo: Corrigir o tipo do dado das colunas para um que faça sentido.
+
+Ação:
+Identificar as colunas cujo tipo precisa ser convertido para o correto e fazer a conversão.
+
+2. Tratamendo de registros  duplicados
+Objetivo: Eliminar registros (linhas) que sejam 100% idênticas a outra linha no dataset.
+
+Ação:
+Identificar as linhas duplicadas e retirá-las do dataset.
+>> Nos 74 registros, há 9 duplicados, totalizando 65 registros únicos.
+
+
+3. Tratamento de valores NULL
+Objetivo: Substituit o valor NULL de colunas por valores específicos que façam sentido para o negócio.
+
+Ação:
+Identificar as colunas que possuem valores NULL e substituir por valores que façam sentido, de acordo com a informação da coluna.
+
+
+4. Criar partições dos dados por ano
+Objetivo: Particionar o arquivo por ANO, para otimizar a performance de consulta e de transformação.
+
+Ação:
+Criar uma coluna ANO, a partir da extração do ano da coluna Timestamp do Registro
+Ao salvar o df spark em um parquet, particionar por essa coluna de Ano criada.
+
+5. Criar coluna para identificar de qual arquivo de entrada vieram os dados
+Objetivo: Ter um identificador para cada registro, identificando qual foi o arquivo que o originou.
+
+Ação:
+Criar uma nova coluna "Arquivo de Origem" que contenha o valor constante igual ao nome do arquivo processado, para todos os registros.
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+1. Padronização dos nomes das Colunas
+Objetivo: Ter todos os nomes das colunas padronizados, seguindo as boas práticas para banco de dados
+
+Ação:
+Aplicar caixa baixa (lower case, tudo minúsculo) para os nomes das colunas
+Substituir espaços em branco no meio das palavras por '_'
+Retirar cedilhas e acentos dos nomes das colunas
+
+2. Padronização dos Nomes dos Clientes - Nome Completo
+Objetivo: Certificar-se de que o nome completo (nomes + sobrenomes) dos clientes estejam uniformes e consistentes em todo o conjunto de dados.
+
+Ação:
+Remover espaços extras no início e no final dos nomes e sobrenomes
+Concatenar nome + espaço + sobrenome
+Converter todas as primeiras letras para maiúsculas (por exemplo, "João Silva").
+
+
+3. Domínio do Email
+Objetivo: Extrair o domínio do e-mail do cliente para análises específicas relacionadas ao provedor de e-mail.
+
+Ação:
+A partir da coluna EMAIL, extrair a parte após o "@" para uma nova coluna chamada DOMINIO_EMAIL. Por exemplo, para o e-mail "joao.silva@email.com", o domínio é "email.com".
+
+
+4. Momento do Dia
+Objetivo: Segmentar o momento do dia em que o cliente interagiu, possibilitando análises sobre períodos mais movimentados e padrões de comportamento.
+
+Ação:
+A partir da coluna TIMESTAMP, extrair a hora e classificar em uma das seguintes categorias numa nova coluna HORA_DO_DIA:
+Madrugada (00:00 - 05:59)
+Manhã (06:00 - 11:59)
+Tarde (12:00 - 17:59)
+Noite (18:00 - 23:59)
+
+5. Valor da compra após desconto
+Calcular o valor real da compra, após os descontos percentuais aplicados.
+
+6. Criar partições dos dados por ano
+Objetivo: Particionar o arquivo por ano, para otimizar a performance de consulta e de transformação.
+
+Ação:
+Criar uma coluna ano, a partir da extração do ano da coluna Timestamp do Registro
+Ao salvar o df spark em um parquet, particionar por essa coluna de ano criada.
