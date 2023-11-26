@@ -5,8 +5,11 @@ AWS, Spark/Pyspark, Python, SQL, AWS Lambda, AWS Glue (Jobs, Workflow), AWS Clou
 
 ## Vídeos
 [Arquitetura]()
+
 [Serviços AWS]()
+
 [Redshift e Modelagem]()
+
 [Demo]()
 
 ## Estudo de Caso
